@@ -1,12 +1,13 @@
 {% extends 'layouts/base.html' %}
 
-{% block title %} Maps {% endblock title %}
+{% block title %} Icons {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
 
     <!-- Header -->
-
-
     <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
       <div class="container-fluid">
         <div class="header-body">
@@ -22,7 +23,7 @@
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Finance Table</h3>
+                  <h3 class="mb-0">Student Table</h3>
                 </div>
                 <div class="col text-right">
                   <a href="#!" class="btn btn-sm btn-primary">See all</a>
@@ -36,21 +37,43 @@
                   <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Class</th>
-                    <th scope="col">Current Balance</th>
-                    <th scope="col">Money Added</th>
-                    <th scope="col">Updated Credit</th>
+                    <th scope="col"># of Attended Class</th>
+                    <th scope="col"># of Absence</th>
+                    <th scope="col">Credit</th>
                   </tr>
                 </thead>
-                
+                <tbody>
+                  {% for student_info in form %}
+                    <tr>
+                      <th scope="row">
+                        {{student_info.student_name}}
+                     </th>
+                      <td>
+                       {{student_info.student_class}}
+                     </td>
+                      <td>
+                        {{student_info.days_attended}}
+                      </td>
+                      <td>
+                       {{student_info.days_absent}}
+                     </td>
+                      <td>
+                        {{student_info.current_credit}}
+                     </td>
+                   </tr>
+                   {% endfor %}
+                </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    
 
       {% include "includes/footer.html" %}
 
-    </div>
+  </div>
 
 {% endblock content %}
 
