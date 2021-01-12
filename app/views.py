@@ -31,12 +31,11 @@ def pages(request):
 #     else:
 #         form = Student()
         
-
-
     try:
-        load_template = request.path.split('/')[-1]
-        
-        
+
+
+        load_template = request.path.split('/')[-1]  
+        html_template = loader.get_template( load_template )
         
         if(load_template == "students.html"):
             form = Student.objects.all()
@@ -45,9 +44,8 @@ def pages(request):
 
             return HttpResponse(html_template.render(context, request))
 
-
         context['segment'] = load_template
-        html_template = loader.get_template( load_template )
+        
 
         return HttpResponse(html_template.render(context, request))
     except template.TemplateDoesNotExist:
